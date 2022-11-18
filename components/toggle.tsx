@@ -4,6 +4,7 @@ import { Switch } from '@headlessui/react';
 export default function Toggle({toggleAll}: {toggleAll: (isAll: boolean) => void}) {
   const [enabled, setEnabled] = useState(false);
 
+
   useEffect(() => {
     toggleAll(enabled);
   }, [enabled]);
