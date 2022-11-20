@@ -10,14 +10,14 @@ export default function Toggle({toggleAll}: {toggleAll: (isAll: boolean) => void
   }, [enabled]);
 
   return (
-    <div className="p-1 ml-2">
+    <div className="mx-3">
         <div className="flex items-center">
             <Switch
             checked={enabled}
             onChange={setEnabled}
             className={`${
-                enabled ? 'bg-blue-600' : 'bg-gray-200'
-            } relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                enabled ? 'bg-[#1F487E]' : 'bg-gray-200'
+            } relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#6290C8] focus:ring-offset-2`}
             >
             <span
                 className={`${

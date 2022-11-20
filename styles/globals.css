@@ -20,8 +20,8 @@ a {
 @tailwind utilities;
 
 img {
-  --color: #ef4444; /* the color of the border */
-  --border: 10px;   /* the thickness of the border */
+  --color: #1D3461; /* the color of the border */
+  --border: 7px;   /* the thickness of the border */
   --offset: 30px;   /* control the movement of the border */
   --gap: 5px;     
   
@@ -45,4 +45,12 @@ img {
 
 img:hover {
   --_s: 0px
+}
+
+.avatar-image {
+  max-width: 10rem;
+}
+
+.table th:first-child {
+  position: unset;
 }

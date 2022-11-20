@@ -10,7 +10,7 @@ export default function Avatar ({src, alt, size = 10, className = '', onClick}: 
         alt={alt}
         onClick={(e) => handleClick(e)}
 
-        className={`inline-block test h-32 w-32 ml-4 mt-10 hover:scale-125 hover:border-2 rounded-full ${className}`}
+        className={`inline-block avatar-image w-full ml-4 mt-10 min-[320px]:m-0 hover:scale-110 hover:border-2 rounded-full ${className}`}
     />
     );
 };
