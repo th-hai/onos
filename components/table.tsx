@@ -14,7 +14,7 @@ export default function Table({people} : {people: any[]}) {
           {people.length && people.map((person: any, index: number) => (
             <tr key={index}>
               <td>{person.name}</td>
-              <td>{person.money}</td>
+              <td>{person.money}.000 ₫</td>
             </tr>
           ))}
         </tbody>

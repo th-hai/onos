@@ -8,12 +8,12 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@headlessui/tailwindcss": "^0.1.1",
+    "axios": "^1.2.0",
     "daisyui": "^2.41.0",
     "next": "latest",
     "next-pwa": "^5.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sheetdb-node": "^0.0.12"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "17.0.4",

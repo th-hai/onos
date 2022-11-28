@@ -29,3 +29,4 @@ export default function Toggle({toggleAll}: {toggleAll: (isAll: boolean) => void
     </div>
   )
 }
+

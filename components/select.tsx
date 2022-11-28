@@ -17,7 +17,7 @@ export default function PersonChooser({people, onChange} : {people: any[]; onCha
   return (
     <div className="grid grid-cols-3 gap-3">
         {people.length && people.map((person: any, index) => (
-            <Avatar key={index} src={person.avatar} alt={person.name} className={classNames(person.id === selected.id ? 'border-dashed border-4 border-[#1F487E]' : 'border-2 border-transparent')} onClick={() => setSelected(person)} />
+            <Avatar key={index} src={person.avatar} alt={person.name} className={classNames(person._id === selected._id ? 'border-dashed border-4 border-[#1F487E]' : 'border-2 border-transparent')} onClick={() => setSelected(person)} />
         ))}
     </div>
   )
