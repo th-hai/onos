@@ -1,5 +1,5 @@
 import axios from 'axios';
-import styles from '../styles/home.module.css'
+import styles from '../styles/Home.module.css'
 import Input from '../components/input';
 import Toggle from '../components/toggle';
 import { useEffect, useState } from 'react';
