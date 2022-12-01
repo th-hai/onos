@@ -1,5 +1,5 @@
 import axios from 'axios';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/home.module.css'
 import Input from '../components/input';
 import Toggle from '../components/toggle';
 import { useEffect, useState } from 'react';
@@ -52,9 +52,9 @@ export default function Home() {
   const isFieldFilled = (): string => {
     if (isAll) {
       const isSomeDataInputed = data.some((item: any) => item.money !== '' && Number.isFinite(item.money));
-      return isSomeDataInputed ? '' : 'btn-disabled cursor-no-drop bg-[#50514F] text-gray-400 opacity-50';
+      return isSomeDataInputed ? 'btn-active' : 'btn-disabled cursor-no-drop bg-[#50514F] text-gray-400 opacity-50';
     } else {
-      return allValue.length > 0 ? '' : 'btn-disabled cursor-no-drop bg-[#50514F] text-gray-400 opacity-50';
+      return allValue.length > 0 ? 'btn-active' : 'btn-disabled cursor-no-drop bg-[#50514F] text-gray-400 opacity-50';
     }
   };
 
@@ -172,21 +172,21 @@ export default function Home() {
         </div>
       </div>
       <main className={styles.main}>
-        <h1 className="text-[#1D3461] text-6xl mr-12 min-[320px]:mr-0">
+        <h1 className="text-[#1D3461] main-title text-6xl mr-12 min-[320px]:mr-0">
           ONOS
         </h1>
 
         <div className='flex flex-col w-full items-center justify-center'>
-          <div className="text-3xl font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0">Người trả tiền: <span className='text-[#F25F5C]'>{selectedPeople?.name}</span></div>
+          <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0">Người trả tiền: <span className='text-[#F25F5C] selected-pp'>{selectedPeople?.name}</span></div>
           <div className="person mr-10 min-[320px]:mr-0 my-6">
             {users.length && <PersonChooser onChange={onPeopleSelected} people={users}/>}
           </div>  
           <div className='flex flex-row items-center'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1D3461" className="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1D3461" className="ppl-icon w-6 h-6">
               <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
             </svg>
             <Toggle toggleAll={toggleAll}/>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1D3461" className="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1D3461" className="ppl-icon w-6 h-6">
               <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
             </svg>
           </div>
@@ -224,10 +224,10 @@ export default function Home() {
 
       <footer className={styles.footer}>
       <div className="btm-nav">
-        <button onClick={(e) => {reset()}}>
+        <button onClick={(e) => {}}>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </button>
-        <button className="active">
+        <button className="tab-active active">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
         </button>
         <button>

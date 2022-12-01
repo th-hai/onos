@@ -10,4 +10,8 @@ module.exports = {
     require('@headlessui/tailwindcss'),
     require("daisyui"),
   ],
+  daisyui: {
+    themes: ["cupcake", "dracula"],
+    darkTheme: "dracula"
+  },
 }

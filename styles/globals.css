@@ -20,7 +20,7 @@ a {
 @tailwind utilities;
 
 img {
-  --color: #1D3461; /* the color of the border */
+  --color: #294C60; /* the color of the border */
   --border: 7px;   /* the thickness of the border */
   --offset: 30px;   /* control the movement of the border */
   --gap: 5px;     
@@ -53,4 +53,58 @@ img:hover {
 
 .table th:first-child {
   position: unset;
+}
+
+@media (prefers-color-scheme: dark) {
+  img {
+    --color: #8FE388; 
+  }
+
+  .main-title {
+    color: #8FE388;
+  }
+
+  .sub-title {
+    color: #F8FFDB;
+  }
+
+  .selected-pp {
+    color: #FFC49B;
+  }
+
+  .selected-border {
+    border-color: #8FE388;
+  }
+
+  .ppl-icon {
+    fill: #26CF83;
+  }
+
+  .toggle-enable {
+    background-color: #26CF83;
+  }
+
+  .btn-disabled {
+    background-color: #8FE388;
+  }
+
+  .btn-active {
+    background-color: #26CF83;
+  }
+
+  .btn-active:hover {
+    background-color: #20AC6D;
+  }
+
+  .btm-nav>*:where(.active) {
+    border-color: #26CF83;
+  }
+}
+
+.btm-nav {
+  height: 3rem;
+}
+
+.table {
+  margin-bottom: 30px;
 }
