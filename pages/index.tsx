@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import PersonChooser from '../components/select';
 import InputUnit from '../components/input-unit';
 import Table from '../components/table';
+import { getAllUsers } from '../pages/api/user';
 // const sheetdb = require("sheetdb-node");
 // const client = sheetdb({ address: '3dcm5cqh9m8wn' });
 
@@ -17,26 +18,22 @@ export default function Home() {
   const [note, setNote] = useState('');
   const [selectedPeople, setSelectedPeople] = useState({}) as any;
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [err, setError] = useState('');
   const [data, setData] = useState(Array(6).fill(null).map(() => ({
     id: "",
     name: "",
     money: "",
-    lastUpdated: "",
   }))) as any;
 
 
-  const [message, setMessage] = useState('');
   const BASE_API = 'https://easy-pear-lamb-gown.cyclic.app/api/';
-
   const getLastestData = async () => {
     setUsers([]);
-    const { data } = await axios.get(`${BASE_API}users`);
-    console.log('Updated after refresh', data);
+    const data = await getAllUsers();
     setUsers(data);
     setSelectedPeople(users[0]);
-    console.log(selectedPeople);
     const filteredUsers = users.filter((user: any) => user._id !== selectedPeople._id);
-    console.log("🚀 ~ file: index.tsx ~ line 45 ~ getLastestData ~ filteredUsers", paidUsers)
     setPaidUsers(filteredUsers);
   }
 
@@ -66,7 +63,6 @@ export default function Home() {
     newData[index].id = e.target.id;
     newData[index].name = e.target.name;
     newData[index].money = parseInt(e.target.value);
-    newData[index].lastUpdated = new Date().toLocaleString();
     setData(newData);
     console.log(newData);
   };
@@ -80,12 +76,14 @@ export default function Home() {
   };
 
   const reset = () => {
-    setData(Array(6).fill(null).map(() => ({
+    setPaidUsers([]);
+    const intialData = Array(6).fill(null).map(() => ({
       id: "",
       name: "",
       money: "",
-      lastUpdated: "",
-    })));
+    }));
+    setData(intialData);
+    getLastestData();
     setAllValue(0);
     setNote('');
   }
@@ -105,18 +103,18 @@ export default function Home() {
       setLoading(true);
       await axios.post(`${BASE_API}users/money/all`, payload).then((res) => {
         console.log('Updated all', res);
-        setMessage('Cập nhật thành công');
+        setMessage('Lụm thành công 🚀');
         setTimeout(() => {
           setMessage('');
         }, 2000);
       }).catch((err) => {
         console.log('Error', err);
-        setMessage('Cập nhật thất bại');
+        setError('Lụm thất bại rồi 😭😭');
         setTimeout(() => {
-          setMessage('');
+          setError('');
         }, 2000);
       }).finally(() => {
-        getLastestData();
+        reset();
         setLoading(false);
         });
       
@@ -140,18 +138,18 @@ export default function Home() {
       setLoading(true);
       await axios.post(`${BASE_API}users/money`, payload).then((res) => {
         console.log('Updated all', res);
-        setMessage('Cập nhật thành công');
+        setMessage('Lụm thành công 🚀');
         setTimeout(() => {
           setMessage('');
         }, 2000);
       }).catch((err) => {
         console.log('Error', err);
-        setMessage('Cập nhật thất bại');
+        setError('Lụm thất bại rồi 😭😭');
         setTimeout(() => {
-          setMessage('');
+          setError('');
         }, 2000);
       }).finally(() => {
-        getLastestData();
+        reset();
         setLoading(false);
       });
     }
@@ -159,6 +157,20 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 min-h-screen flex flex-col">
+      <div className={message && message.length ? 'visible toast toast-top toast-end' : 'invisible' }>
+        <div className="alert alert-success">
+          <div>
+            <span>{message}</span>
+          </div>
+        </div>
+      </div>
+      <div className={err && err.length ? 'visible toast toast-top toast-end' : 'invisible' }>
+        <div className="alert alert-error">
+          <div>
+            <span>{err}</span>
+          </div>
+        </div>
+      </div>
       <main className={styles.main}>
         <h1 className="text-[#1D3461] text-6xl mr-12 min-[320px]:mr-0">
           ONOS
@@ -194,30 +206,29 @@ export default function Home() {
                 <Input id={'note'} type={'text'} value={note} placeholder={'Ghi chú'} onChange={(e) => {setNote(e.target.value)}}/>
               </div>
               <div className="mt-4 min-[530px]:mx-auto">
-                  
-                {/* <a onClick={(e) => {updateUserMoney()}} className="rounded px-36 py-2.5 overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300 mt-4">
-                  <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                  <span className="relative">Lụm</span> 
-                </a> */}
                 <button onClick={(e) => {updateUserMoney()}} className={`btn bg-[#6290C8] min-[530px]:min-w-[340px] w-full border-[#376996] text-white ${isFieldFilled()} ${loading? 'loading btn-disabled cursor-no-drop': ''}`}>{loading ? 'đợi xíu đang lụm': 'Lụm'}</button>
                 <progress className={loading ? 'visible progress progress-success w-76' : 'invisible' }></progress>
               </div>
-            
             </div>
-            
           </div>
         </div>
+        {users.length && <Table people={users}/>}
       </main>
+      <div className="analytic-tab">
 
-      {users.length && <Table people={users}/>}
+      </div>
+      <div className="transaction-tab">
+
+      </div>
+
 
       <footer className={styles.footer}>
       <div className="btm-nav">
-        <button>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+        <button onClick={(e) => {reset()}}>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </button>
         <button className="active">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
         </button>
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
