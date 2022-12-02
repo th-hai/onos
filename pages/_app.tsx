@@ -14,7 +14,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
-        <title>ONOS PWA</title>
+        <title>ONOS - Sổ Nợ</title>
 
         <link rel="manifest" href="/manifest.json" />
         

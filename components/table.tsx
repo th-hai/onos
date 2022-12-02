@@ -5,7 +5,7 @@ export default function Table({people} : {people: any[]}) {
       <div className="overflow-x-auto w-full">
       <table className="table w-full">
         <thead>
-          <tr>
+          <tr className="bg-red-900">
             <th>Tên</th>
             <th>Tiền</th>
           </tr>

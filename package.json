@@ -10,10 +10,12 @@
     "@headlessui/tailwindcss": "^0.1.1",
     "axios": "^1.2.0",
     "daisyui": "^2.41.0",
+    "ka-table": "^7.6.4",
     "next": "latest",
     "next-pwa": "^5.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-spinners-kit": "^1.9.1"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
