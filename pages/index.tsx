@@ -231,7 +231,7 @@ export default function Home() {
       </div>
       
       <div className={selectedTab === 'analytic' ? 'flex flex-col items-center justify-center': 'hidden'}>
-        <Analytic/>
+        {!!users && users.length ? <Analytic users={users}/>: <MetroSpinner size={80} color='#294C60' loading={true} />}
       </div>
       <div className={selectedTab === 'transaction' ? 'transaction flex flex-col px-2': 'hidden'}>
         <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0 mb-5">Lịch Sử Giao Dịch </div>
