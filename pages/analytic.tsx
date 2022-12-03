@@ -4,9 +4,7 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
-  Title,
   Tooltip,
-  Legend
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
@@ -14,11 +12,8 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
-  Title,
   Tooltip,
-  Legend
 );
-
 
 export default function Analytic({ users }: { users: any[] }) {
 
@@ -28,11 +23,7 @@ export default function Analytic({ users }: { users: any[] }) {
             legend: {
                 position: "top" as const,
                 display: false
-            },
-            title: {
-                display: true,
-                text: "Thống Kê"
-            },
+            }
         }
     };
 

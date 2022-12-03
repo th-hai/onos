@@ -47,11 +47,6 @@ export default function Home() {
     getLastestData();
   }, []);
 
-  useEffect(() => {
-    console.log('selectedTab', selectedTab);
-
-  }, [selectedTab]);
-
   const onPeopleSelected = (people: any) => {
     setSelectedPeople(people);
     const filteredUsers = users.filter((user: any) => user.name !== people.name);
@@ -73,7 +68,6 @@ export default function Home() {
     newData[index].name = e.target.name;
     newData[index].money = parseInt(e.target.value);
     setData(newData);
-    console.log(newData);
   };
 
   const toggleAll = (isAll: boolean) => {
@@ -105,19 +99,17 @@ export default function Home() {
     if (!isAll && allValue) {
       const payload = {
         paidUserId: selectedPeople._id,
-        sameValue: parseInt(allValue),
+        sameValue: Math.abs(parseInt(allValue)),
         description: note,
       }
       
       setLoading(true);
       await axios.post(`${BASE_API}users/money/all`, payload).then((res) => {
-        console.log('Updated all', res);
         setMessage('Lụm thành công 🚀');
         setTimeout(() => {
           setMessage('');
         }, 2000);
       }).catch((err) => {
-        console.log('Error', err);
         setError('Lụm thất bại rồi 😭😭');
         setTimeout(() => {
           setError('');
@@ -134,7 +126,7 @@ export default function Home() {
       const upUsers = updatedUser.map((item: any) => {
         return {
           id: item.id,
-          money: item.money
+          money: Math.abs(item.money)
         }
       });
 
@@ -146,13 +138,11 @@ export default function Home() {
 
       setLoading(true);
       await axios.post(`${BASE_API}users/money`, payload).then((res) => {
-        console.log('Updated all', res);
         setMessage('Lụm thành công 🚀');
         setTimeout(() => {
           setMessage('');
         }, 2000);
       }).catch((err) => {
-        console.log('Error', err);
         setError('Lụm thất bại rồi 😭😭');
         setTimeout(() => {
           setError('');
@@ -185,11 +175,6 @@ export default function Home() {
           </div>
         </div>
         <main className={styles.main}>
-          
-          {/* <h1 className="text-[#1D3461] main-title text-6xl mr-12 min-[320px]:mr-0">
-            ONOS
-          </h1> */}
-
           <div className='flex flex-col w-full items-center justify-center'>
             <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0">Người trả tiền: <span className='text-[#F25F5C] selected-pp'>{selectedPeople?.name}</span></div>
             <div className="person mr-10 min-[320px]:mr-0 my-6">
@@ -231,6 +216,7 @@ export default function Home() {
       </div>
       
       <div className={selectedTab === 'analytic' ? 'flex flex-col items-center justify-center': 'hidden'}>
+        <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0 mb-5">Thống Kê</div>
         {!!users && users.length ? <Analytic users={users}/>: <MetroSpinner size={80} color='#294C60' loading={true} />}
       </div>
       <div className={selectedTab === 'transaction' ? 'transaction flex flex-col px-2': 'hidden'}>
