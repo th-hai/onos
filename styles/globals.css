@@ -55,6 +55,16 @@ a {
   position: unset;
 }
 
+.ka {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+@media screen and (max-width: 500px) {
+  .ka {
+    max-width: 430px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   img {
     --color: #8FE388; 
@@ -99,6 +109,10 @@ a {
   .btm-nav>*:where(.active) {
     border-color: #26CF83;
   }
+
+  .tab-active {
+    background: #228056;
+  }
 }
 
 .btm-nav {
@@ -114,3 +128,58 @@ a {
   flex-direction: column;
   align-items: center;
 }
+
+.ka-table {
+  table-layout: auto !important;
+  border-collapse: separate !important;
+  white-space: nowrap !important;
+}
+
+.responsive-table .ka {
+  width: 400px;
+ /* Force table to not be like tables anymore */
+ /* Hide table headers (but not display: none;
+ , for accessibility) */
+}
+.responsive-table .ka table {
+  border-collapse: collapse;
+}
+.responsive-table .ka table, .responsive-table .ka thead, .responsive-table .ka tbody, .responsive-table .ka th, .responsive-table .ka td, .responsive-table .ka tr {
+  display: block;
+}
+.responsive-table .ka thead {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.responsive-table .ka tr:nth-of-type(even) {
+  background: #f6f6f6;
+}
+.responsive-table .ka tr:nth-of-type(even) td {
+  border-bottom: 1px solid white;
+}
+.responsive-table .ka tr {
+  border: 1px solid #ccc;
+}
+.responsive-table .ka td.ka-cell {
+ /* Behave like a "row" */
+  border: none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 50%;
+}
+.responsive-table .ka td.ka-cell:before {
+ /* Now like a table header */
+  position: absolute;
+ /* Top/left values mimic padding */
+  top: 6px;
+  left: 6px;
+  width: 45%;
+  padding-right: 10px;
+  white-space: nowrap;
+ /* Label the data */
+  content: attr(data-column);
+  color: #000;
+  font-weight: bold;
+}
+

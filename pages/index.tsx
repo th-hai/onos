@@ -11,6 +11,7 @@ import { MagicSpinner, MetroSpinner } from "react-spinners-kit";
 import Image from 'next/image';
 import mainLogo from '../public/assets/logo.png';
 import Transactions from './transaction';
+import Analytic from './analytic';
 
 export default function Home() {
   const [isAll, setIsAll] = useState(true);
@@ -165,7 +166,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 min-h-screen flex flex-col">
-      <div className="flex w-full flex-row items-center justify-center my-8">
+      <div className="flex w-full flex-row items-center justify-center my-6">
         <Image src={mainLogo} height={100} alt="onos-logo"/>
       </div>
       <div className={selectedTab === 'home' ? 'home-tab': 'hidden'}>
@@ -229,10 +230,10 @@ export default function Home() {
         </main>
       </div>
       
-      <div className={selectedTab === 'analytic' ? '': 'hidden'}>
-
+      <div className={selectedTab === 'analytic' ? 'flex flex-col items-center justify-center': 'hidden'}>
+        <Analytic/>
       </div>
-      <div className={selectedTab === 'transaction' ? 'transaction container mx-auto px-4 min-h-screen flex flex-col': 'hidden'}>
+      <div className={selectedTab === 'transaction' ? 'transaction flex flex-col px-2': 'hidden'}>
         <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0 mb-5">Lịch Sử Giao Dịch </div>
         { selectedTab === 'transaction' ?  <Transactions/> : '' }
       </div>
