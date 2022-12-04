@@ -35,12 +35,12 @@ export default function Analytic({ users }: { users: any[] }) {
         }
     };
 
-    const labels = chartData.map((item) => item.name);
+    const labels = chartData && chartData?.map((user: any) => user.name);
     const data = {
     labels: labels,
     datasets: [
     {   
-        data: chartData.map((item) => item.money * 1000),
+        data: chartData && chartData?.map((item) => item.money * 1000),
         backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(255, 159, 64, 0.2)",
