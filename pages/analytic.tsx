@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,6 +17,14 @@ ChartJS.register(
 
 export default function Analytic({ users }: { users: any[] }) {
 
+    // Create a hook to update the chart
+    const [chartData, setChartData] = React.useState(users);
+
+    // Create a hook to update the chart
+    useEffect(() => {
+        setChartData(users);
+    }, [users]);
+
     const options = {
         responsive: true,
         plugins: {
@@ -27,12 +35,12 @@ export default function Analytic({ users }: { users: any[] }) {
         }
     };
 
-    const labels = users.map((item) => item.name);
+    const labels = chartData.map((item) => item.name);
     const data = {
     labels: labels,
     datasets: [
     {   
-        data: users.map((item) => item.money * 1000),
+        data: chartData.map((item) => item.money * 1000),
         backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(255, 159, 64, 0.2)",
@@ -54,7 +62,7 @@ export default function Analytic({ users }: { users: any[] }) {
         borderWidth: 1
     }
     ]
-};
+    };
     return (
         <Bar options={options} data={data} />
     )
