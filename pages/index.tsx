@@ -12,6 +12,7 @@ import Image from 'next/image';
 import mainLogo from '../public/assets/logo.png';
 import Transactions from './transaction';
 import Analytic from './analytic';
+import MonthlyAnalytic from './monthly-analytic';
 
 export default function Home() {
   const [isAll, setIsAll] = useState(true);
@@ -217,7 +218,12 @@ export default function Home() {
       
       <div className={selectedTab === 'analytic' ? 'flex flex-col items-center justify-center': 'hidden'}>
         <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0 mb-5">Thống Kê</div>
-        {!!users && users.length ? <Analytic users={users}/>: <MetroSpinner size={80} color='#294C60' loading={true} />}
+        {!!users && users.length ?
+         <>
+         <Analytic users={users}/>
+          <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0 mb-5">{`Trong Tháng ${new Date().getMonth() + 1}`}</div>
+         <MonthlyAnalytic/>
+         </>: <MetroSpinner size={80} color='#294C60' loading={true} />}
       </div>
       <div className={selectedTab === 'transaction' ? 'transaction flex flex-col px-2': 'hidden'}>
         <div className="text-3xl sub-title font-bold text-[#376996] mr-8 mt-5 min-[320px]:mr-0 mb-5">Lịch Sử Giao Dịch </div>

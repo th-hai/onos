@@ -18,3 +18,9 @@ export async function getAllTransactions() {
     const { data } = await axios.get(`${BASE_URL}/transactions`);
     return data;
 };
+
+export async function getMonthlyTransactions() {
+
+    const { data } = await axios.get(`${BASE_URL}/transaction-monthly`);
+    return data;
+};

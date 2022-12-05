@@ -19,6 +19,11 @@ a {
 @tailwind components;
 @tailwind utilities;
 
+
+.container {
+  background-image: url('../public/assets/bbburst.svg');
+}
+
 .person-chooser img {
   --color: #294C60; /* the color of the border */
   --border: 7px;   /* the thickness of the border */
