@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Switch } from '@headlessui/react';
 
 export default function Toggle({toggleAll}: {toggleAll: (isAll: boolean) => void}) {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(true);
 
 
   useEffect(() => {
