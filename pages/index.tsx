@@ -32,7 +32,7 @@ export default function Home() {
   }))) as any;
 
 
-  const BASE_API = 'https://abc.com/api/';
+  const BASE_API = 'https://easy-pear-lamb-gown.cyclic.app/api/';
   const getLastestData = async () => {
     setUsers([]);
     const data = await getAllUsers();
