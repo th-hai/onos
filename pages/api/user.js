@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://easy-pear-lamb-gown.cyclic.app/api'
+const BASE_URL = 'https://onos-server.onrender.com/api'
 
 export async function getAllUsers() {
 
