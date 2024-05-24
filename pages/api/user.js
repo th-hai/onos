@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://onos-server.onrender.com/api'
+const BASE_URL = 'https://m7s26wyj7l5n26gmj7ygbjfnfm0vkvoi.lambda-url.ap-southeast-1.on.aws/api'
 
 export async function getAllUsers() {
-
     const { data } = await axios.get(`${BASE_URL}/users`);
     return data;
 };
