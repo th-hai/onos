@@ -32,7 +32,7 @@ export default function Home() {
   }))) as any;
 
 
-  const BASE_API = 'https://easy-pear-lamb-gown.cyclic.app/api/';
+  const BASE_API = 'https://m7s26wyj7l5n26gmj7ygbjfnfm0vkvoi.lambda-url.ap-southeast-1.on.aws/api/';
   const getLastestData = async () => {
     setUsers([]);
     const data = await getAllUsers();
